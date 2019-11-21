@@ -36,7 +36,29 @@ public class algo_0019 {
      */
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        return head.next;
+        ListNode dummyNode = new ListNode(0);
+        dummyNode.next = head;
+        ListNode start = dummyNode;
+        ListNode end = dummyNode;
+        while(n-- > 0){
+            end = end.next;
+            //n --;
+        }
+        while(end.next != null){
+            start = start.next;
+            end = end.next;
+        }
+        ListNode del = start.next;
+        start.next = start.next.next;
+        del.next = null;
+        return dummyNode.next;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4, 5, 6, 7};
+        ListNode head = new ListNode(nums);
+        System.out.println(head);
+        System.out.println(new algo_0019().removeNthFromEnd(head, 7));
     }
 
 }

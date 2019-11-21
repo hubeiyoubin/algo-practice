@@ -13,7 +13,7 @@ public class ListNode {
           ListNode cur = this;
           while(cur != null){
               sb.append(cur.val);
-              sb.append("<- ");
+              sb.append("-> ");
               cur = cur.next;
           }
           sb.append("null");
