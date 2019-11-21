@@ -34,7 +34,9 @@ public class algo_0019 {
      *     ListNode(int x) { val = x; }
      * }
      */
+    //暴力解法，两次遍历，第一次遍历全部，找出要删除的节点，第二次遍历进行删除操作
 
+    // 双指针一次遍历法
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummyNode = new ListNode(0);
         dummyNode.next = head;
