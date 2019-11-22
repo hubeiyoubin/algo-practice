@@ -26,7 +26,45 @@ public class algo_0021 {
      * }
      */
 
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-      return null;
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(-1);
+        ListNode node = dummy;
+        if(l1 == null && l2 == null)
+            return node;
+
+        while(l1 != null || l2 != null){
+            if(l1 == null){
+                node.next = l2;
+                break;
+            }
+            if(l2 == null){
+                node.next = l1;
+                break;
+            }
+            if(l1.val < l2.val){
+                node.next = new ListNode(l1.val);
+                node = node.next;
+                l1 = l1.next;
+            }else if((l1.val == l2.val)){
+                node.next = new ListNode(l1.val);
+                node.next.next = new ListNode(l2.val);
+                node = node.next.next;
+                l1 = l1.next;
+                l2 = l2.next;
+            }else{
+                node.next = new ListNode(l2.val);
+                node = node.next;
+                l2 = l2.next;
+            }
+        }
+        return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        int[] nums1 = {1};
+        int[] nums2 = {1, 4, 5, 6};
+        ListNode node1 = new ListNode(nums1);
+        ListNode node2 = new ListNode(nums2);
+        System.out.println(mergeTwoLists(node1,node2));
     }
 }
