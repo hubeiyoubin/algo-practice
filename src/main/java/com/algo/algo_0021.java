@@ -29,9 +29,6 @@ public class algo_0021 {
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(-1);
         ListNode node = dummy;
-        if(l1 == null && l2 == null)
-            return node;
-
         while(l1 != null || l2 != null){
             if(l1 == null){
                 node.next = l2;
@@ -60,8 +57,29 @@ public class algo_0021 {
         return dummy.next;
     }
 
+    //递归解法
+    //其实递归就是程序内部维护了一个栈。
+    // 这个题就是每次都把最小值压入栈，最后出栈的时候，将所有数连在一起就可以了。
+    // 说白了，就是用一个栈维护了顺序。
+    // 最后的连接，当然是小的连小的，所以l1 小，就连到 l1,l2 小就连到 l2，最后先返回的，就是最小的头结点。
+    public ListNode mergeTwoListsRe(ListNode l1, ListNode l2) {
+        if(l1 == null) {
+            return l2;
+        }
+        if(l2 == null) {
+            return l1;
+        }
+
+        if(l1.val < l2.val) {
+            l1.next = mergeTwoListsRe(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeTwoListsRe(l1, l2.next);
+            return l2;
+        }
+    }
     public static void main(String[] args) {
-        int[] nums1 = {1};
+        int[] nums1 = {1, 2};
         int[] nums2 = {1, 4, 5, 6};
         ListNode node1 = new ListNode(nums1);
         ListNode node2 = new ListNode(nums2);
