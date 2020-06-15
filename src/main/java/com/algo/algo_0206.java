@@ -46,5 +46,24 @@ public class algo_0206 {
         head.next = null;
         return newHead;
     }
+
+    public ListNode reverseList_to(ListNode head){
+        if(head == null || head.next == null)
+            return head;
+        ListNode newHead = reverseList_to(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+
+
+
+    public static void main(String[] args) {
+        algo_0206 al = new algo_0206();
+        int[] nums = {1, 2, 3, 4};
+        ListNode head = new ListNode(nums);
+        ListNode node = al.reverseList_to(head);
+        System.out.println(node.toString());
+    }
 }
 
