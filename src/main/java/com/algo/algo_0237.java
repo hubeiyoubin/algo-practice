@@ -1,5 +1,7 @@
 package com.algo;
 
+import com.entity.ListNode;
+
 /**
  * @date : 2020-1-6
  * 237. 删除链表中的节点

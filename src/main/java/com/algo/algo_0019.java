@@ -1,5 +1,7 @@
 package com.algo;
 
+import com.entity.ListNode;
+
 /**
  * @date : 2019-11-20
  *

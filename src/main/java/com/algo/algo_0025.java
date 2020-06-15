@@ -1,5 +1,7 @@
 package com.algo;
 
+import com.entity.ListNode;
+
 /**
  * @author : youbin
  * @date : 2019/11/23 13:37

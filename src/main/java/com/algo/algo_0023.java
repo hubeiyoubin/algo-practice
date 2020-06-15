@@ -1,9 +1,7 @@
 package com.algo;
 
+import com.entity.ListNode;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @date : 2019-11-22

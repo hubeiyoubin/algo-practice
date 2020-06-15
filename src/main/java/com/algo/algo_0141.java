@@ -1,5 +1,7 @@
 package com.algo;
 
+import com.entity.ListNode;
+
 /**
  * @date : 2020-1-6
  * 141. 环形链表
