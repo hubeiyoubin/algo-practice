@@ -4,6 +4,7 @@ import com.entity.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author yb
@@ -43,9 +44,37 @@ public class algo_0094 {
         inorderTraversalList(right, list);
     }
 
+
+//    栈S;
+//    p= root;
+//    while(p || S不空){
+//        while(p){
+//            p入S;
+//            p = p的左子树;
+//        }
+//        p = S.top 出栈;
+//        访问p;
+//        p = p的右子树;
+//    }
+    public List<Integer> inorderTraversal_02(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode p = root;
+        while(p != null || !stack.empty()){
+            while(p != null){
+                stack.add(p);
+                p = p.left;
+            }
+            p = stack.pop();
+            list.add(p.val);
+            p = p.right;
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         Integer[] nums = {1,null,2,3};
-        List list = new algo_0094().inorderTraversal(TreeNode.constructTree(nums));
+        List list = new algo_0094().inorderTraversal_02(TreeNode.constructTree(nums));
         for(int i =0 ; i < list.size(); i ++){
             System.out.println(list.get(i));
         }
