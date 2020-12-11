@@ -39,11 +39,119 @@ package com.algo;
 
 import com.entity.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *  99. 恢复二叉搜索树
   */
 public class algo_0099 {
-    public void recoverTree(TreeNode root) {
 
+    private TreeNode x;
+    private TreeNode y;
+    private TreeNode pre;
+    public void recoverTree(TreeNode root) {
+        dfs(root);
+        if(x!=null && y!=null) {
+            int tmp = x.val;
+            x.val = y.val;
+            y.val = tmp;
+        }
     }
+
+    private void dfs(TreeNode node) {
+        if(node==null) {
+            return;
+        }
+        dfs(node.left);
+        if (pre != null) {
+            if (pre.val > node.val) {
+                y = node;
+                if (x == null) {
+                    x = pre;
+                }
+            }
+        }
+        pre = node;
+        dfs(node.right);
+    }
+
+
+    public void recoverTree_03(TreeNode root) {
+        List<TreeNode> list = new ArrayList<>();
+        dfs_03(root, list);
+        TreeNode x = null;
+        TreeNode y = null;
+        //扫面遍历的结果，找出可能存在错误交换的节点x和y
+        for(int i = 0; i < list.size() - 1; i ++){
+            if(list.get(i).val > list.get(i + 1).val){
+                y = list.get(i + 1);
+                if(x == null){
+                    x = list.get(i);
+                }else{
+                    break;
+                }
+            }
+        }
+        int temp = x.val;
+        x.val = y.val;
+        y.val = temp;
+        //如果x和y不为空，则交换这两个节点值，恢复二叉搜索树s
+    }
+
+    private void dfs_03(TreeNode root, List<TreeNode> list) {
+        if(root == null)
+            return;
+
+        dfs_03(root.left, list);
+        list.add(root);
+        dfs_03(root.right, list);
+    }
+
+    public void recoverTree_02(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        dfs_02(root, list);
+        int[] swapped = findTwoSwapped(list);
+        recover(root, 2, swapped[0],swapped[1]);
+    }
+
+    private void recover(TreeNode root, int count, int x, int y) {
+        if (root != null) {
+            if (root.val == x || root.val == y) {
+                root.val = root.val == x ? y : x;
+                if (--count == 0) {
+                    return;
+                }
+            }
+            recover(root.right, count, x, y);
+            recover(root.left, count, x, y);
+        }
+    }
+
+    private int[] findTwoSwapped(List<Integer> list) {
+        int x = -1;
+        int y = -1;
+        for(int i = 0; i < list.size() - 1; i ++){
+            if(list.get(i) > list.get(i+1)){
+                y = list.get(i+1);
+                if (x == -1) {
+                    x = list.get(i);
+                }else{
+                    break;
+                }
+            }
+        }
+        return new int[]{x,y};
+    }
+
+    private void dfs_02(TreeNode node, List<Integer> list) {
+        if(node == null)
+            return;
+
+        dfs_02(node.left, list);
+        list.add(node.val);
+        dfs_02(node.right, list);
+    }
+
+
 }
