@@ -9,7 +9,7 @@ import java.io.File;
 public class FileUtils {
 
     public static void main(String[] args){
-        String dic = "D:";
+        String dic = "D:\\DevelopData\\project";
         File file=new File(dic);
         File [] files = file.listFiles();
         //开始重命名
@@ -21,7 +21,7 @@ public class FileUtils {
                 return;
             }
             //修改文件名
-            File newFile = new File(files[i].getAbsolutePath().replace("-pt","-pres"));
+            File newFile = new File(files[i].getAbsolutePath().replace("-","--"));
             if (toBeRenamed.renameTo(newFile)) {
                 System.out.println("File renamed success!!.");
             } else {
