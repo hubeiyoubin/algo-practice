@@ -1,5 +1,7 @@
 package com.entity;
 
+import java.util.List;
+
 /**
  * @author yb
  * @date: 2020-12-11
@@ -21,5 +23,12 @@ public class Node {
         left = _left;
         right = _right;
         next = _next;
+    }
+
+    public List<Node> children;
+
+    public Node(int _val, List<Node> _children) {
+        val = _val;
+        children = _children;
     }
 }
