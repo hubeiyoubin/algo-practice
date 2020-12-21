@@ -30,4 +30,21 @@ public class algo_0559 {
         }
         return level;
     }
+
+
+    // dfs
+    int level;
+    public int maxDepth_(Node root) {
+        level = 0;
+        dfs(root, 1);
+        return level;
+    }
+    private void dfs(Node root, int depth){
+        if(root == null)
+            return;
+        level = Math.max(level,depth);
+        for(Node child: root.children){
+            dfs(child, depth + 1);
+        }
+    }
 }
