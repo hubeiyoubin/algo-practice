@@ -2,8 +2,7 @@ package com.algo;
 
 import com.entity.TreeNode;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @author yb
@@ -11,39 +10,65 @@ import java.util.Queue;
  * 872 叶子相似的树
  */
 public class algo_0872 {
+
+    // 递归法 dfs
     public boolean leafSimilar(TreeNode root1, TreeNode root2) {
         if(root1 == null || root2 == null)
             return root1 == null && root2 == null;
 
-        Queue<TreeNode> que1 = new LinkedList<>();
-        Queue<TreeNode> que2 = new LinkedList<>();
-        if(root1 != null && root2 != null){
-            que1.offer(root1);
-            que2.offer(root2);
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+        dfs(root1, list1);
+        dfs(root2, list2);
+        if(list1.size() != list2.size())
+            return false;
+        for(int i=0; i < list1.size(); i++){
+            if(list1.get(i) != list2.get(i))
+                return false;
         }
-        LinkedList<Integer> list1 = new LinkedList<>();
-        LinkedList<Integer> list2 = new LinkedList<>();
-        while(!que1.isEmpty() || !que2.isEmpty()){
-            if(!que1.isEmpty()) {
-                TreeNode node1 = que1.poll();
-                if (node1.left == null && node1.right == null) {
-                    list1.add(node1.val);
-                }
-                if (node1.left != null)
-                    que1.offer(node1.left);
-                if (node1.right != null)
-                    que1.offer(node1.right);
-            }
-            if(!que2.isEmpty()) {
-                TreeNode node2 = que2.poll();
-                if (node2.left == null && node2.right == null) {
-                    list2.add(node2.val);
-                }
-                if (node2.left != null)
-                    que2.offer(node2.left);
-                if (node2.right != null)
-                    que2.offer(node2.right);
-            }
+        return true;
+    }
+    private void dfs(TreeNode root, List<Integer> list){
+        if(root == null)
+            return;
+        if(root.left == null && root.right == null){
+            list.add(root.val);
+            return;
+        }
+        dfs(root.left, list);
+        dfs(root.right, list);
+    }
+
+
+    // 迭代法，以前序遍历，储存叶子节点，并进行比较
+    public boolean leafSimilar_(TreeNode root1, TreeNode root2) {
+        if(root1 == null || root2 == null)
+            return root1 == null && root2 == null;
+
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
+        s1.push(root1);
+        s2.push(root2);
+
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> list2 = new ArrayList<>();
+        while(!s1.isEmpty()){
+            TreeNode node = s1.pop();
+            if(node.left == null && node.right == null)
+                list1.add(node.val);
+            if(node.right != null)
+                s1.push(node.right);
+            if(node.left != null)
+                s1.push(node.left);
+        }
+        while(!s2.isEmpty()){
+            TreeNode node = s2.pop();
+            if(node.left == null && node.right == null)
+                list2.add(node.val);
+            if(node.right != null)
+                s2.push(node.right);
+            if(node.left != null)
+                s2.push(node.left);
         }
         if(list1.size() != list2.size())
             return false;
