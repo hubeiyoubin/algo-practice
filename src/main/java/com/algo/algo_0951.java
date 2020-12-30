@@ -25,8 +25,10 @@ public class algo_0951 {
         return list1.equals(list2);
     }
     private void dfs(TreeNode root, List<Integer> list){
-        if(root == null)
+        if(root == null) {
+            list.add(-1);
             return;
+        }
         list.add(root.val);
         int left = root.left == null ? -1 : root.left.val;
         int right = root.right == null ? -1 : root.right.val;
