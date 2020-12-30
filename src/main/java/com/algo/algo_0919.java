@@ -2,9 +2,7 @@ package com.algo;
 
 import com.entity.TreeNode;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @author yb
@@ -54,6 +52,47 @@ public class algo_0919 {
         }
     }
 
+    class CBTInserter_ {
+        TreeNode root;
+        List<TreeNode> list;
+        public CBTInserter_(TreeNode root) {
+            this.root = root;
+            Queue<TreeNode> queue = new LinkedList<>();
+            list = new ArrayList<>();
+            if(root != null)
+                queue.offer(root);
+            while(!queue.isEmpty()){
+                TreeNode node = queue.poll();
+                list.add(node);
+                if(node.left != null)
+                    queue.offer(node.left);
+                if(node.right != null)
+                    queue.offer(node.right);
+            }
+        }
+
+        public int insert(int v) {
+            if(this.root == null){
+                this.root = new TreeNode(v);
+                return -1;
+            }
+            TreeNode node = new TreeNode(v);
+            list.add(node);
+            int size = list.size();
+            TreeNode parent = list.get(size / 2 -1);
+            if(size % 2 == 0){
+                parent.left = node;
+            } else {
+                parent.right = node;
+            }
+            return parent.val;
+        }
+
+
+        public TreeNode get_root() {
+            return this.root;
+        }
+    }
 /**
  * Your CBTInserter object will be instantiated and called as such:
  * CBTInserter obj = new CBTInserter(root);
