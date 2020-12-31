@@ -9,11 +9,33 @@ import com.entity.TreeNode;
  */
 public class algo_1026 {
 
+
+    /**
+     * 求差的绝对值为最大，只要和祖先元素中最大值和最小值比较，取其中更大的一个即可
+     */
+    int value = 0;
+    public int maxAncestorDiff(TreeNode root) {
+        dfs( root, root.val, root.val);
+        return value;
+    }
+
+    private void dfs(TreeNode root, int max, int min){
+        if(root == null)
+            return;
+        value =Math.max(Math.max(Math.abs(root.val - max), Math.abs(root.val - min)), value);
+        max = root.val > max ? root.val : max;
+        min = root.val > min ? min : root.val;
+        System.out.println("val:"+root.val +" -- max:" + max + " -- min:"+ min);
+        dfs(root.left, max, min);
+        dfs(root.right,max, min);
+    }
+
+
     /**
      * 暴力破解， 逐个比较
      */
     int max = 0;
-    public int maxAncestorDiff(TreeNode root) {
+    public int maxAncestorDiff_(TreeNode root) {
         mdfs(root);
         return max;
     }
@@ -38,4 +60,8 @@ public class algo_1026 {
 
         return root.val;
     }
+
+
+
+
 }
