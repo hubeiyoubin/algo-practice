@@ -61,7 +61,4 @@ public class algo_1026 {
         return root.val;
     }
 
-
-
-
 }
