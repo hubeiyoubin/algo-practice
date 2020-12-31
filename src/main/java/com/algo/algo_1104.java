@@ -14,6 +14,8 @@ public class algo_1104 {
 
     /**
      *  总结公式
+     *
+     *
      * @param label
      * @return
      */
