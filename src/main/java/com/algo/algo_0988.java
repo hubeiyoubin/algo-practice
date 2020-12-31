@@ -29,4 +29,21 @@ public class algo_0988 {
         dfs(root.left, new StringBuffer(sb));
         dfs(root.right, new StringBuffer(sb));
     }
+
+    private void dfs_(TreeNode root, StringBuffer sb){
+        if(root == null)
+            return;
+        if(root.left == null && root.right == null){
+            sb.append((char)('a'+root.val));
+            sb.reverse();
+            String str = sb.toString();
+            if (str.compareTo(ans) < 0)
+                ans = str;
+        }
+        sb.append((char)('a'+root.val));
+        dfs_(root.left, new StringBuffer(sb));
+        dfs_(root.right, new StringBuffer(sb));
+        // 回溯
+        sb.deleteCharAt(sb.length() - 1);
+    }
 }
