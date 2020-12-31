@@ -8,8 +8,31 @@ import com.entity.TreeNode;
  * 1022 从根到叶的二进制数之和
  */
 public class algo_1022 {
-    int sum;
+
+    /**
+     *  从上往下累加
+     * @param root
+     * @return
+     */
     public int sumRootToLeaf(TreeNode root) {
+        dfs(root, 0);
+        return sum;
+    }
+    private void dfs(TreeNode root, int cur){
+        if(root == null)
+            return;
+
+        if(root.left == null && root.right == null){
+            sum = sum + cur * 2 + root.val;
+            return;
+        }
+        dfs(root.left, cur * 2 + root.val);
+        dfs(root.right, cur * 2 + root.val);
+    }
+
+
+    int sum;
+    public int sumRootToLeaf_(TreeNode root) {
         dfs(root, new StringBuilder());
         return sum;
     }
