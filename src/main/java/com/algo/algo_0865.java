@@ -8,6 +8,8 @@ import java.util.HashMap;
  * @author yb
  * @date: 2020-12-29
  * 865 具有所有最深节点的最小子树
+ *
+ * 1123 最深叶节点的最近公共祖先
  */
 public class algo_0865 {
     int max_depth = -1;
