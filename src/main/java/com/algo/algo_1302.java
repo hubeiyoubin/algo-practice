@@ -13,7 +13,7 @@ public class algo_1302 {
     public int deepestLeavesSum(TreeNode root) {
         depth = 0;
         res = 0;
-        dfs(root, 0);
+        dfs(root, 0 );
         return res;
     }
     private void dfs(TreeNode node, int dep){
