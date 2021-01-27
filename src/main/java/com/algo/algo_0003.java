@@ -176,6 +176,29 @@ public class algo_0003 {
         return max;
     }
 
+    /**
+     * 双指针解法
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring(String s) {
+        int start = 0, end = 0, max = 0;
+        HashSet<Character> set = new HashSet<>();
+        while(end < s.length()) {
+            char c = s.charAt(end);
+            if (!set.contains(c)) {
+                set.add(c);
+                end++;
+                max = Math.max(end - start, max);
+                // System.out.println(s.substring(start,end));
+            } else {
+                set.remove(s.charAt(start));
+                start ++;
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
        // System.out.println(getNoReString("abcabcbb"));
         System.out.println(lengthOfLongestSubstring_04("abcabcbb"));
