@@ -56,4 +56,27 @@ public class algo_0011 {
         int[] height = new int[]{1,8,6,2,5,4,8,3,7};
         System.out.println(maxArea_02(height));
     }
+
+    /**
+     * 双指针解法
+     * @param height
+     * @return
+     */
+    public int maxArea_(int[] height) {
+        if(height == null || height.length == 0)
+            return 0;
+        int left = 0, right = height.length-1, max = 0;
+        while(left < right){
+            int lv = height[left];
+            int rv = height[right];
+            int area = Math.min(lv, rv) * (right - left);
+            max = Math.max(area, max);
+            if(lv > rv){
+                right --;
+            } else {
+                left ++;
+            }
+        }
+        return max;
+    }
 }
