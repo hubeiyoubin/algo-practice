@@ -24,4 +24,24 @@ public class algo_0080 {
         }
         return slow;
     }
+
+
+    public int removeDuplicates_(int[] nums) {
+        if(nums == null || nums.length == 0)
+            return 0;
+        int left = 1, right = 1;
+        int count = 1;
+        while(right < nums.length) {
+            if(nums[right] == nums[right-1]){
+                count ++;
+            } else {
+                count = 1;
+            }
+            if(count <= 2)
+                nums[left++] = nums[right];
+
+            right ++;
+        }
+        return left;
+    }
 }
