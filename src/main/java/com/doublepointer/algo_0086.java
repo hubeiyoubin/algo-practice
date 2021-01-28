@@ -35,4 +35,33 @@ public class algo_0086 {
         smallNode.next = large.next;
         return small.next;
     }
+
+    /**
+     * 双指针解法
+     * @param head
+     * @param x
+     * @return
+     */
+    public ListNode partition(ListNode head, int x) {
+        if (head == null)
+            return null;
+        ListNode p = new ListNode(0), slow = p, fast = head.next;
+        slow.next = head;
+        while (fast != null) {
+            if (slow.next.val < x) {
+                slow = slow.next;
+                head = fast;
+            } else if (fast.val < x) {
+                head.next = fast.next;
+                fast.next = slow.next;
+                //slow = slow.next = fast;
+                slow.next = fast;
+                slow = slow.next;
+            } else {
+                head = fast;
+            }
+            fast = head.next;
+        }
+        return p.next;
+    }
 }
