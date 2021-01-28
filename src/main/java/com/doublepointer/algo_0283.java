@@ -10,21 +10,6 @@ public class algo_0283 {
         if(nums == null || nums.length < 2)
             return;
         int left = 0, right = 0;
-//        while(right < nums.length && left < nums.length){
-//            while(left < nums.length && nums[left] != 0){
-//                left ++;
-//            }
-//            right = left + 1;
-//            while(right < nums.length && nums[right] == 0){
-//                right ++;
-//            }
-//            if(left < nums.length && right < nums.length && nums[left] == 0) {
-//                swap(nums, left, right);
-//            } else {
-//                left ++;
-//                right ++;
-//            }
-//        }
         while (right < nums.length) {
             if (nums[right] != 0) {
                 swap(nums, left, right);
@@ -36,6 +21,8 @@ public class algo_0283 {
     }
 
     private void swap(int[] nums, int left, int right){
+        if(left == right)
+            return;
         int temp = nums[right];
         nums[right] = nums[left];
         nums[left] = temp;
