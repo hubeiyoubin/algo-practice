@@ -12,9 +12,9 @@ public class algo_0524 {
     String longest;
     public String findLongestWord(String s, List<String> d) {
         if(s == null || s.length() == 0 || d == null || d.size() == 0)
-            return null;
+            return "";
         max = 0;
-        longest = null;
+        longest = "";
         for(String str : d){
             isLongest(s, str);
         }
@@ -22,7 +22,7 @@ public class algo_0524 {
     }
     //abpcplea apple
     private void isLongest(String s, String str){
-        if(s.length() < str.length() || max >= str.length())
+        if(s.length() < str.length() || max > str.length())
             return;
         int i = 0, j = 0;
         while(i < s.length() && j < str.length()){
@@ -36,9 +36,11 @@ public class algo_0524 {
             }
         }
         //System.out.println("max:" + max);
-        if(j > max && j == str.length()){
-            max = j;
-            longest = str;
+        if(j >= max && j == str.length()){
+            if(longest.length() == 0 || str.length() > max || (str.length() == longest.length() && str.compareTo(longest) < 0)){
+                max = j;
+                longest = str;
+            }
         }
     }
 }
