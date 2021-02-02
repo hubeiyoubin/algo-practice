@@ -8,6 +8,12 @@ import java.util.ArrayList;
  * 986 区间列表的交集
  */
 public class algo_0986 {
+    /**
+     *  双指针
+     * @param firstList
+     * @param secondList
+     * @return
+     */
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
         ArrayList<int[]> list = new ArrayList<>();
         if(firstList == null || secondList == null ||
