@@ -1,4 +1,4 @@
-package com.algo;
+package com.doublepointer;
 
 import java.util.HashSet;
 
