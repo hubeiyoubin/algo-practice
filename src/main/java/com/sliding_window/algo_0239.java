@@ -23,6 +23,8 @@ import java.util.PriorityQueue;
  */
 public class algo_0239 {
     public int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums == null || nums.length == 0)
+            return new int[]{};
         int n = nums.length;
         PriorityQueue<int[]> pq = new PriorityQueue<int[]>(new Comparator<int[]>() {
             public int compare(int[] pair1, int[] pair2) {
