@@ -9,6 +9,16 @@ import java.util.Arrays;
  * // todo 有点难理解
  */
 public class algo_1040 {
+    /**
+     * 最终的最大移动次数为：max(A[n-1]-A[1]-n+2, A[n-2]-A[0]-n+2)
+     *
+     *
+     * 最小移动次数
+     * 使用滑动窗口来记录最小移动次数，当窗口内的石子个数大于n时，我们需要缩小窗口。already_stone来统计窗口内的石子数，剩下来的石子数n-already_stone全部用来移动。注意特殊情况就是类似3,4,5,6,10这种前n-1个石子连续，第n个石子不连续，但是我们不能直接将10移到2，应该是3移到8，10移到7，需要两步完成。
+     *
+     * @param stones
+     * @return
+     */
     public int[] numMovesStonesII(int[] stones) {
         Arrays.sort(stones);
         int n=stones.length;
