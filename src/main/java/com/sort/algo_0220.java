@@ -17,7 +17,7 @@ public class algo_0220 {
     }
 
     /**
-     * 先进行桶排序，然后维持 宽度为 K的滑动窗口
+     * 先进行 以t为基数的桶排序，然后维持 宽度为 K的滑动窗口
      * @param nums
      * @param k
      * @param t
