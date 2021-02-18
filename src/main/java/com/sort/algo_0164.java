@@ -8,6 +8,9 @@ import java.util.Arrays;
  * 164 最大间距
  */
 public class algo_0164 {
+
+
+    // nlogn
     public int maximumGap(int[] nums) {
         if(nums == null || nums.length < 2)
             return 0;
