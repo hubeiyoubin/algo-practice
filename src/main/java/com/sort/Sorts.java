@@ -237,7 +237,7 @@ public class Sorts {
 
     /**
      * 7.堆排序算法
-     *
+     *最佳情况：T(n) = O(nlogn) 最差情况：T(n) = O(nlogn) 平均情况：T(n) = O(nlogn)
      * @param array
      * @return
      */
@@ -275,10 +275,11 @@ public class Sorts {
      */
     public static void adjustHeap(int[] array, int i) {
         int maxIndex = i;
-        //如果有左子树，且左子树大于父节点，则将最大指针指向左子树
+
+        //如果有右子树，且右子树大于父节点，则将最大指针指向右子树
         if (i * 2 < len && array[i * 2] > array[maxIndex])
             maxIndex = i * 2;
-        //如果有右子树，且右子树大于父节点，则将最大指针指向右子树
+        //如果有左子树，且左子树大于父节点，则将最大指针指向左子树
         if (i * 2 + 1 < len && array[i * 2 + 1] > array[maxIndex])
             maxIndex = i * 2 + 1;
         //如果父节点不是最大值，则将父节点与最大值交换，并且递归调整与父节点交换的位置。
@@ -290,13 +291,16 @@ public class Sorts {
 
     /**
      * 8.计数排序
-     *
+     * 当输入的元素是n 个0到k之间的整数时，它的运行时间是 O(n + k)。
+     *最佳情况：T(n) = O(n+k)  最差情况：T(n) = O(n+k)  平均情况：T(n) = O(n+k)
      * @param array
      * @return
      */
     public static int[] CountingSort(int[] array) {
         if (array.length == 0) return array;
         int bias, min = array[0], max = array[0];
+        // 找出待排序的数组中最大和最小的元素；
+
         for (int i = 1; i < array.length; i++) {
             if (array[i] > max)
                 max = array[i];
@@ -306,10 +310,13 @@ public class Sorts {
         bias = 0 - min;
         int[] bucket = new int[max - min + 1];
         Arrays.fill(bucket, 0);
+        //统计数组中每个值为i的元素出现的次数，存入数组C的第i项；
+        //对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）；
         for (int i = 0; i < array.length; i++) {
             bucket[array[i] + bias]++;
         }
         int index = 0, i = 0;
+        //反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1
         while (index < array.length) {
             if (bucket[i] != 0) {
                 array[index] = i - bias;
@@ -324,7 +331,8 @@ public class Sorts {
     //9.桶排序
     /**
      * 桶排序
-     *
+     * 桶排序 (Bucket sort)的工作的原理：假设输入数据服从均匀分布，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排
+     *最佳情况：T(n) = O(n+k)   最差情况：T(n) = O(n+k)   平均情况：T(n) = O(n2)　
      * @param array
      * @param bucketSize
      * @return
@@ -361,6 +369,12 @@ public class Sorts {
 
     /**
      * 10.基数排序
+     *
+     * 取得数组中的最大数，并取得位数；
+     *
+     * arr为原始数组，从最低位开始取每个位组成radix数组；
+     *
+     * 对radix进行计数排序（利用计数排序适用于小范围数的特点）
      * @param array
      * @return
      */
