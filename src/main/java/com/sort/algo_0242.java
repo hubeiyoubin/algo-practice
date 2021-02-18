@@ -20,5 +20,7 @@ public class algo_0242 {
                 return false;
         }
         return true;
+
+        // return Arrays.equals(as, at);
     }
 }
