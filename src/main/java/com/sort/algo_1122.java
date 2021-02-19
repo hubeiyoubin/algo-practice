@@ -6,6 +6,8 @@ package com.sort;
  * 1122 数组的相对排序
  */
 public class algo_1122 {
+
+    // 计数排序
     public int[] relativeSortArray(int[] arr1, int[] arr2) {
         int max = 0;
         for(int a : arr1){
