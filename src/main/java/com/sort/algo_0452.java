@@ -12,6 +12,11 @@ import java.util.List;
  */
 public class algo_0452 {
 
+    /**
+     *  求交集
+     * @param points
+     * @return
+     */
     public int findMinArrowShots(int[][] points) {
         if(points == null || points.length == 0)
             return 0;
