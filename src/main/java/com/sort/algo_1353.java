@@ -1,6 +1,7 @@
 package com.sort;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -9,7 +10,8 @@ import java.util.PriorityQueue;
  * 1353 最多可以参加的会议数目
  */
 public class algo_1353 {
-    public int maxEvents(int[][] events) {
+
+    public int maxEvents_(int[][] events) {
         //首先排序：开始时间小的在前。这样是方便我们顺序遍历，把开始时间一样的都放进堆
         Arrays.sort(events, (o1, o2) -> o1[0] - o2[0]);
         //小顶堆
